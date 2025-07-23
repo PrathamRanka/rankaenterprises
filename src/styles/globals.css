@@ -7,6 +7,9 @@ body {
   background-color: #fff;
   color: #111;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
   --background: #ffffff;

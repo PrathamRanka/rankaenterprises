@@ -1,19 +1,10 @@
-// app/layout.tsx (keep this as is, just remove <Navbar />)
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+// app/layout.tsx
+
+
 import '../styles/globals.css';
-import { AuthProvider } from '../providers/AuthProvider';
-import NavbarWrapper from '../client/NavbarWrapper'; // we'll make this
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import type { Metadata } from 'next';
+import { AuthProvider } from '@/providers/AuthProvider';
+import { CartProvider } from '@/providers/CartProvider';
 
 export const metadata: Metadata = {
   title: 'Ranka Enterprises',
@@ -29,9 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>
-          <NavbarWrapper>
-            <main>{children}</main>
-          </NavbarWrapper>
+          <CartProvider>
+            {children}
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

@@ -6,31 +6,27 @@ import { motion } from 'framer-motion';
 const products = [
   {
     title: 'RGB Mechanical Keyboard',
-    image: 'https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg',
+    image: 'https://res.cloudinary.com/dduzorsii/image/upload/v1753296649/m90_qir1h9.jpg',
     tag: 'Best Seller',
   },
   {
     title: 'Gaming Mouse',
-    image: 'https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg',
+    image: 'https://res.cloudinary.com/dduzorsii/image/upload/v1753296650/NVME_hsi1pw.jpg',
     tag: 'Limited Edition',
   },
   {
     title: 'RGB Headphones',
-    image: 'https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg',
+    image: 'https://res.cloudinary.com/dduzorsii/image/upload/v1753296649/Router_dfzihi.jpg',
     tag: 'New',
   },
   {
     title: 'USB Hub',
-    image: 'https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg',
+    image: 'https://res.cloudinary.com/dduzorsii/image/upload/v1753296651/Logitech_K120_xaetkl.png',
   },
   {
     title: '1TB SSD',
     image: 'https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg',
     tag: 'Best Seller',
-  },
-  {
-    title: 'Cooling Fan',
-    image: 'https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg',
   },
 ];
 

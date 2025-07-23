@@ -4,26 +4,33 @@ import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
-import InfiniteCarousel from '@/components/InfiniteCarousel'; // ⬅️ Import the carousel
+import AboutFounder from '@/components/About-Founder';
+import InfiniteCarousel from '@/components/InfiniteCarousel';
+import { AuthProvider } from '@/providers/AuthProvider';
 
-export default function NavbarWrapper({ children }: { children: React.ReactNode }) {
+export default function HomePage() {
   const pathname = usePathname();
-
   const hideOnRoutes = ['/signin', '/login'];
   const isHome = pathname === '/';
   const shouldHide = hideOnRoutes.includes(pathname);
 
   return (
-    <>
+    <AuthProvider>
       {!shouldHide && <Navbar />}
+
       {isHome && (
         <>
           <HeroSection />
-          <InfiniteCarousel /> {/* ⬅️ Add carousel below hero only on home */}
+          <InfiniteCarousel />
+          <div id='about-founder'>
+          <AboutFounder />
+          </div>
         </>
       )}
-      <main>{children}</main>
-      {!shouldHide && <Footer />}
-    </>
+
+      <main>{/* Additional content can go here */}</main>
+
+      {!shouldHide && <div id='footer'><Footer /></div>}
+    </AuthProvider>
   );
 }

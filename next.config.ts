@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    images: {
-    domains:  ['m.media-amazon.com'], // Add any other domains you need to allow
+  images: {
+    domains: ['m.media-amazon.com', 'dummyimage.com', 'lh3.googleusercontent.com', 'res.cloudinary.com'], // all domains in a single array
   },
-  /* config options here */
+  // any other config options you want
 };
 
 export default nextConfig;

@@ -1,8 +1,8 @@
-//  # Firebase config + init
-
+// src/firebase.ts
 import { initializeApp, getApps, getApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getAnalytics, isSupported } from 'firebase/analytics'
+import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -16,10 +16,10 @@ const firebaseConfig = {
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 const auth = getAuth(app)
+const db = getFirestore(app)
 
 let analytics: ReturnType<typeof getAnalytics> | null = null
 
-// Only try to load analytics in the browser
 if (typeof window !== 'undefined') {
   isSupported().then((yes) => {
     if (yes) {
@@ -28,4 +28,4 @@ if (typeof window !== 'undefined') {
   })
 }
 
-export { auth, analytics }
+export { auth, analytics, db }
