@@ -18,6 +18,7 @@ type Product = {
   title: string;
   imageurl: string;
   price: number;
+    quantity?: number;
   description: string;
   discount?: number;
   rating?: number;

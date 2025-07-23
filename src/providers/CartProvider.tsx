@@ -35,20 +35,26 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
+      console.log('Cart updated:', cart); // 👈 See cart changes in real time
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
-    setCart((prev) => {
-      const exists = prev.find((i) => i.id === item.id);
-      if (exists) {
-        return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
-        );
-      }
-      return [...prev, { ...item, quantity: 1 }];
-    });
-  };
+  setCart((prev) => {
+    const exists = prev.find((i) => i.id === item.id);
+    let updatedCart;
+    if (exists) {
+      updatedCart = prev.map((i) =>
+        i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+      );
+    } else {
+      updatedCart = [...prev, { ...item, quantity: 1 }];
+    }
+
+    console.log('🛒 Updated cart before state change:', updatedCart);
+    return updatedCart;
+  });
+};
 
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((item) => item.id !== id));

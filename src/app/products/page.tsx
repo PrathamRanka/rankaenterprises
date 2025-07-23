@@ -6,7 +6,7 @@ import { db } from '@/lib/firebase';
 import Image from 'next/image';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
-import { useCart } from '@/providers/CartProvider'; // 👈 import cart hook
+import { useCart } from '@/providers/CartProvider'; // 👈 Correct place for hook
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 
@@ -16,7 +16,6 @@ type Product = {
   imageurl: string;
   price: number;
   description: string;
-  quanity?: number;
   inStock: boolean;
   category?: string;
   rating?: number;
@@ -31,6 +30,8 @@ export default function ProductsPage() {
   const [priceFilters, setPriceFilters] = useState<string[]>([]);
   const [categoryFilters, setCategoryFilters] = useState<string[]>([]);
   const [search, setSearch] = useState('');
+
+  const { addToCart } = useCart(); // ✅ moved up so it's ready before usage
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -94,24 +95,20 @@ export default function ProductsPage() {
     );
   };
 
-const handleAddToCart = (product: Product) => {
-  addToCart({
-    id: product.id,
-    title: product.title,
-    imageurl: product.imageurl,
-    price: product.price,
-    quantity: 1,
-  });
-  toast.success(`${product.title} added to cart`);
-};
-
+  const handleAddToCart = (product: Product) => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      imageurl: product.imageurl,
+      price: product.price,
+      quantity: 1,
+    });
+    toast.success(`${product.title} added to cart`);
+  };
 
   const handleAddToWishlist = (title: string) => {
     toast.success(`${title} added to wishlist`);
   };
-
-  const { addToCart } = useCart(); // 👈 get addToCart function
-
 
   return (
     <div className="flex flex-col min-h-screen bg-neutral-50 text-gray-900 font-sans">
@@ -221,14 +218,14 @@ const handleAddToCart = (product: Product) => {
                             ❤️ Wishlist
                           </button>
                           <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleAddToCart(product);
-                          }}
-                          className="bg-black text-white text-sm px-3 py-1 rounded hover:bg-gray-800"
-                        >
-                          🛒 Add to Cart
-                        </button>
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleAddToCart(product);
+                            }}
+                            className="bg-black text-white text-sm px-3 py-1 rounded hover:bg-gray-800"
+                          >
+                            🛒 Add to Cart
+                          </button>
                         </div>
 
                         <Image
